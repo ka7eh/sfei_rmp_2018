@@ -3,22 +3,27 @@ import ReactDOM from 'react-dom'
 import L from 'leaflet'
 import PropTypes from 'prop-types'
 import Plot from 'react-plotly.js'
-import { Button, Header, Pagination, Segment } from 'semantic-ui-react'
+import {
+    Button,
+    Header,
+    Pagination,
+    Segment
+} from 'semantic-ui-react'
 
 import SPECIES_DATA from '../../data/bay_area_mercury_species.json'
 import CONFIG from '../../config'
 
 const THRESHOLD_LINES = Object.entries(CONFIG.SPECIES_THRESHOLDS)
     .map(([name, threshold], idx) => ({
-        'type': 'line',
-        'x0': idx - 0.5,
-        'y0': threshold,
-        'x1': idx + 0.5,
-        'y1': threshold,
-        'line': {
-            'color': 'red',
-            'width': 4,
-            'dash': 'dashdot',
+        type: 'line',
+        x0: idx - 0.5,
+        y0: threshold,
+        x1: idx + 0.5,
+        y1: threshold,
+        line: {
+            color: 'red',
+            width: 4,
+            dash: 'dashdot'
         }
     }))
 
@@ -28,32 +33,36 @@ const SPECIES_BOX_DATA = {}
 Object
     .entries(SPECIES_DATA)
     .forEach(
-        ([year, sp]) => SPECIES_BOX_DATA[year] = Object
-            .entries(sp)
-            .sort()
-            .map(
-                ([name, result]) => ({
-                    y: result,
-                    type: 'box',
-                    name
-                })
-            )
+        ([year, sp]) => {
+            SPECIES_BOX_DATA[year] = Object
+                .entries(sp)
+                .sort()
+                .map(
+                    ([name, result]) => ({
+                        y: result,
+                        type: 'box',
+                        name
+                    })
+                )
+        }
     )
 
 Object
     .entries(SPECIES_DATA)
     .forEach(
-        ([year, sp]) => SPECIES_BAR_DATA[year] = Object
-            .entries(sp)
-            .sort()
-            .reduce(
-                (data, [name, result]) => {
-                    data.x.push(name)
-                    data.y.push(result.reduce((r1, r2) => r1 + r2) / result.length)
-                    return data
-                },
-                { x: [], y: [], type: 'bar' }
-            )
+        ([year, sp]) => {
+            SPECIES_BAR_DATA[year] = Object
+                .entries(sp)
+                .sort()
+                .reduce(
+                    (data, [name, result]) => {
+                        data.x.push(name)
+                        data.y.push(result.reduce((r1, r2) => r1 + r2) / result.length)
+                        return data
+                    },
+                    { x: [], y: [], type: 'bar' }
+                )
+        }
     )
 
 const { START_YEAR, TOTAL_YEARS } = CONFIG
@@ -78,9 +87,10 @@ class Dashboard extends React.Component {
         if (activePage >= START_YEAR && activePage < END_YEAR) {
             this.props.map.showYear(activePage)
             this.setState(
-                {
-                    year: activePage,
-                    datarevision: this.state.datarevision + 1
+                (state) => {
+                    state.year = activePage
+                    state.datarevision++
+                    return state
                 }
             )
         }

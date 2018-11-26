@@ -17,7 +17,7 @@ export default () => {
         )
 
     L.Control.Dashboard = L.Control.extend({
-        onAdd: function (map) {
+        onAdd: () => {
             const container = L.DomUtil.create('div')
             container.id = 'Dashboard'
             L.DomEvent.disableClickPropagation(container)
@@ -47,9 +47,7 @@ export default () => {
             .geoJSON(
                 SAMPLING_DATA,
                 {
-                    filter: (feature) => {
-                        return feature.properties.year === year
-                    },
+                    filter: feature => feature.properties.year === year,
                     style: (feature) => {
                         const { result } = feature.properties
                         if (result <= 0.011) {
@@ -58,42 +56,39 @@ export default () => {
                                 color: '#ffffb2',
                                 fillColor: '#ffffb2'
                             }
-                        } else if (result <= 4.37) {
+                        } if (result <= 4.37) {
                             return {
                                 radius: 10,
                                 color: '#fecc5c',
                                 fillColor: '#fecc5c'
                             }
-                        } else if (result <= 11.2) {
+                        } if (result <= 11.2) {
                             return {
                                 radius: 15,
                                 color: '#fd8d3c',
                                 fillColor: '#fd8d3c'
                             }
-                        } else if (result <= 34.16) {
+                        } if (result <= 34.16) {
                             return {
                                 radius: 20,
                                 color: '#f03b20',
                                 fillColor: '#f03b20'
                             }
-                        } else {
-                            return {
-                                radius: 25,
-                                color: '#bd0026',
-                                fillColor: '#bd0026'
-                            }
+                        }
+                        return {
+                            radius: 25,
+                            color: '#bd0026',
+                            fillColor: '#bd0026'
                         }
                     },
-                    pointToLayer: (feature, latlng) => {
-                        return L.circleMarker(
-                            latlng,
-                            {
-                                weight: 1,
-                                opacity: 1,
-                                fillOpacity: 0.8
-                            }
-                        )
-                    }
+                    pointToLayer: (feature, latlng) => L.circleMarker(
+                        latlng,
+                        {
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        }
+                    )
                 }
             )
     }
