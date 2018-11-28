@@ -147,41 +147,102 @@ class Dashboard extends React.Component {
                     data={SPECIES_BOX_DATA[year]}
                     layout={{
                         width: 500,
-                        height: 350,
+                        height: 400,
                         datarevision,
                         title: 'Mercury found in species tissues (ug/g ww)',
                         showlegend: false,
                         barmode: 'relative',
+                        xaxis: {
+                            tickmode: 'array',
+                            tickangle: 0,
+                            automargin: true,
+                            tickvals: [0, 1, 2, 3],
+                            ticktext: ['Largemouth Bass', 'Pacific Staghorn Sculpin', 'Striped Bass', 'Top Smelt']
+                        },
                         yaxis: {
+                            showgrid: false,
                             range: CONFIG.SPECIES_RESULT_RANGE
                         },
-                        shapes: THRESHOLD_LINES,
+                        shapes: [
+                            {
+                                type: 'rect',
+                                layer: 'below',
+                                x0: -0.3,
+                                y0: 0,
+                                x1: 4,
+                                y1: 0.15,
+                                line: {
+                                    width: 0
+                                },
+                                fillcolor: '#fecc5c',
+                                opacity: 0.5
+                            },
+                            {
+                                type: 'rect',
+                                layer: 'below',
+                                x0: -0.3,
+                                y0: 0.15,
+                                x1: 4,
+                                y1: 0.23,
+                                line: {
+                                    width: 0
+                                },
+                                fillcolor: '#fd8d3c',
+                                opacity: 0.5
+                            },
+                            {
+                                type: 'rect',
+                                layer: 'below',
+                                x0: -0.3,
+                                y0: 0.23,
+                                x1: 4,
+                                y1: 0.46,
+                                line: {
+                                    width: 0
+                                },
+                                fillcolor: '#f03b20',
+                                opacity: 0.5
+                            },
+                            {
+                                type: 'rect',
+                                layer: 'below',
+                                x0: -0.3,
+                                y0: 0.46,
+                                x1: 4,
+                                y1: 1.5,
+                                line: {
+                                    width: 0
+                                },
+                                fillcolor: '#bd0026',
+                                opacity: 0.5
+                            }
+                        ],
                         images: [
                             {
                                 source: LARGEMOUTH_BASS,
                                 x: 0,
-                                y: -0.3,
+                                y: -0.05,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: PACIFIC_STAGHORN_SCULPIN,
-                                x: 0.4,
-                                y: -0.3,
+                                x: 0.3,
+                                y: -0.05,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: STRIPED_BASS,
-                                x: 0.7,
-                                y: -0.3,
+                                x: 0.55,
+                                y: -0.05,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: TOPSMELT,
-                                x: 0.95,
-                                y: -0.3,
+                                x: 0.8,
+                                y: -0.05,
                                 sizex: 0.2,
                                 sizey: 0.2
                             }

@@ -6,8 +6,39 @@ html, body, #App, #Map {
 
 #Dashboard {
     width: 550px;
-    height: 500px;
+    height: 550px;
     overflow-y: auto;
     background: #fff;
     border-radius: 5px;
+}
+
+.xtick:nth-child(1) {
+    transform: translate(0, 40px);
+}
+.xtick:nth-child(2) {
+    transform: translate(0, 60px);
+}
+.xtick:nth-child(3) {
+    transform: translate(0, 40px);
+}
+.xtick:nth-child(4) {
+    transform: translate(0, 60px);
+}
+
+#Legend {
+    width: 200px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 6px;
+    max-height: 250px;
+    overflow-y: auto;
+    line-height: 1.2;
+}
+
+.legend-row .symbol {
+    width: 10px;
+    height: 10px;
+    margin: 0 10px;
+    display: inline-flex;
+    vertical-align: middle;
 }
