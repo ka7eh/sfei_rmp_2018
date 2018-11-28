@@ -11,6 +11,10 @@ import {
 } from 'semantic-ui-react'
 
 import SPECIES_DATA from '../../data/bay_area_mercury_species.json'
+import LARGEMOUTH_BASS from '../../images/largemouth_bass.png'
+import PACIFIC_STAGHORN_SCULPIN from '../../images/pacific_staghorn_sculpin.png'
+import STRIPED_BASS from '../../images/striped_bass.png'
+import TOPSMELT from '../../images/topsmelt.png'
 import CONFIG from '../../config'
 
 const THRESHOLD_LINES = Object.entries(CONFIG.SPECIES_THRESHOLDS)
@@ -140,9 +144,7 @@ class Dashboard extends React.Component {
                     onClick={this.toggleAutoPlay}
                 />
                 <Plot
-                    data={[
-                        SPECIES_BAR_DATA[year]
-                    ]}
+                    data={SPECIES_BOX_DATA[year]}
                     layout={{
                         width: 500,
                         height: 350,
@@ -153,9 +155,42 @@ class Dashboard extends React.Component {
                         yaxis: {
                             range: CONFIG.SPECIES_RESULT_RANGE
                         },
-                        shapes: THRESHOLD_LINES
+                        shapes: THRESHOLD_LINES,
+                        images: [
+                            {
+                                source: LARGEMOUTH_BASS,
+                                x: 0,
+                                y: -0.3,
+                                sizex: 0.2,
+                                sizey: 0.2
+                            },
+                            {
+                                source: PACIFIC_STAGHORN_SCULPIN,
+                                x: 0.4,
+                                y: -0.3,
+                                sizex: 0.2,
+                                sizey: 0.2
+                            },
+                            {
+                                source: STRIPED_BASS,
+                                x: 0.7,
+                                y: -0.3,
+                                sizex: 0.2,
+                                sizey: 0.2
+                            },
+                            {
+                                source: TOPSMELT,
+                                x: 0.95,
+                                y: -0.3,
+                                sizex: 0.2,
+                                sizey: 0.2
+                            }
+                        ]
                     }}
-                    config={{ displayModeBar: false }}
+                    config={{
+                        displayModeBar: false,
+                        staticPlot: true
+                    }}
                 />
             </Segment>,
             document.getElementById('Dashboard')
