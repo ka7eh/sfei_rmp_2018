@@ -4,25 +4,41 @@ html, body, #App, #Map {
     margin: 0;
 }
 
+#Info .header, #Info .content {
+    background: #9cb9db;
+}
+
+#Info .content p {
+    max-width: 550px;
+}
+
 #Dashboard {
-    width: 550px;
-    height: 550px;
+    width: 500px;
+    height: 510px;
     overflow-y: auto;
     background: #fff;
     border-radius: 5px;
+    overflow-x: hidden;
 }
 
-.xtick:nth-child(1) {
+.main-svg:nth-child(1) {
+    margin-top: -45px;
+    background: transparent !important;
+}
+
+.subplot.xy {
+    transform: translate(0, -8px);
+}
+.xtick {
     transform: translate(0, 40px);
 }
-.xtick:nth-child(2) {
-    transform: translate(0, 60px);
+
+.box {
+    fill-opacity: 0.5 !important;
 }
-.xtick:nth-child(3) {
-    transform: translate(0, 40px);
-}
-.xtick:nth-child(4) {
-    transform: translate(0, 60px);
+
+.imagelayer image {
+    transform: translate(0, -45px);
 }
 
 #Legend {

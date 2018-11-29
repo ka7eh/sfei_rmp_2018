@@ -6,6 +6,7 @@ import Plot from 'react-plotly.js'
 import {
     Button,
     Header,
+    Icon,
     Pagination,
     Segment
 } from 'semantic-ui-react'
@@ -45,7 +46,16 @@ Object
                     ([name, result]) => ({
                         y: result,
                         type: 'box',
-                        name
+                        name,
+                        fillcolor: '#2CA02C',
+                        line: {
+                            width: 2,
+                            color: '#2CA02C',
+                            opacity: 1
+                        },
+                        marker: {
+                            opacity: 1
+                        }
                     })
                 )
         }
@@ -126,7 +136,20 @@ class Dashboard extends React.Component {
 
         return ReactDOM.createPortal(
             <Segment basic textAlign="center">
-                <Header>Sample Year</Header>
+                <Button
+                    circular
+                    icon="help"
+                    size="medium"
+                    style={{
+                        position: 'absolute',
+                        top: 20,
+                        left: 20,
+                        background: '#6e016b',
+                        color: "#fff"
+                    }}
+                    onClick={this.props.showInfo}
+                />
+                <Header style={{ marginTop: 0, marginBottom: 10 }}>Sample Year</Header>
                 <Pagination
                     activePage={year}
                     boundaryRange={0}
@@ -134,30 +157,44 @@ class Dashboard extends React.Component {
                     ellipsisItem={null}
                     firstItem={null}
                     lastItem={null}
+                    prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                    nextItem={{ content: <Icon name='angle right' />, icon: true }}
                     totalPages={END_YEAR + 2}
                     onPageChange={this.handleYearChange}
                 />
                 <Button
                     primary
                     icon={autoPlay ? 'pause' : 'play'}
-                    style={{ marginLeft: 20 }}
+                    style={{
+                        marginLeft: 20,
+                        background: '#6e016b',
+                        color: "#fff"
+                    }}
                     onClick={this.toggleAutoPlay}
+                    content="Play"
                 />
                 <Plot
                     data={SPECIES_BOX_DATA[year]}
                     layout={{
                         width: 500,
                         height: 400,
+                        margin: {
+                            l: 30
+                        },
                         datarevision,
-                        title: 'Mercury found in species tissues (ug/g ww)',
+                        title: 'Avg. organic mercury in fish tissues (ug/g ww)',
                         showlegend: false,
                         barmode: 'relative',
                         xaxis: {
+                            range: [-0.5, 3.5],
                             tickmode: 'array',
+                            tickfont: {
+                                color: '#000'
+                            },
                             tickangle: 0,
                             automargin: true,
                             tickvals: [0, 1, 2, 3],
-                            ticktext: ['Largemouth Bass', 'Pacific Staghorn Sculpin', 'Striped Bass', 'Top Smelt']
+                            ticktext: ['Largemouth<br>Bass', 'Pacific<br>Staghorn<br>Sculpin', 'Striped<br>Bass', 'Top<br>Smelt']
                         },
                         yaxis: {
                             showgrid: false,
@@ -175,7 +212,7 @@ class Dashboard extends React.Component {
                                     width: 0
                                 },
                                 fillcolor: '#fecc5c',
-                                opacity: 0.5
+                                opacity: 1
                             },
                             {
                                 type: 'rect',
@@ -188,7 +225,7 @@ class Dashboard extends React.Component {
                                     width: 0
                                 },
                                 fillcolor: '#fd8d3c',
-                                opacity: 0.5
+                                opacity: 1
                             },
                             {
                                 type: 'rect',
@@ -201,7 +238,7 @@ class Dashboard extends React.Component {
                                     width: 0
                                 },
                                 fillcolor: '#f03b20',
-                                opacity: 0.5
+                                opacity: 1
                             },
                             {
                                 type: 'rect',
@@ -213,36 +250,36 @@ class Dashboard extends React.Component {
                                 line: {
                                     width: 0
                                 },
-                                fillcolor: '#bd0026',
-                                opacity: 0.5
+                                fillcolor: '#a50f15',
+                                opacity: 1
                             }
                         ],
                         images: [
                             {
                                 source: LARGEMOUTH_BASS,
-                                x: 0,
-                                y: -0.05,
+                                x: 0.02,
+                                y: 0,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: PACIFIC_STAGHORN_SCULPIN,
-                                x: 0.3,
-                                y: -0.05,
+                                x: 0.27,
+                                y: 0,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: STRIPED_BASS,
-                                x: 0.55,
-                                y: -0.05,
+                                x: 0.53,
+                                y: 0,
                                 sizex: 0.2,
                                 sizey: 0.2
                             },
                             {
                                 source: TOPSMELT,
-                                x: 0.8,
-                                y: -0.05,
+                                x: 0.78,
+                                y: 0,
                                 sizex: 0.2,
                                 sizey: 0.2
                             }
@@ -260,7 +297,8 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.propTypes = {
-    map: PropTypes.instanceOf(L.Map).isRequired
+    map: PropTypes.instanceOf(L.Map).isRequired,
+    showInfo: PropTypes.func.isRequired
 }
 
 export default Dashboard
