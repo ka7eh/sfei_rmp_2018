@@ -8,7 +8,7 @@ html, body, #App, #Map {
     background: #9cb9db;
 }
 
-#Info .content p {
+#Info .description > p, #Info .description > div {
     max-width: 550px;
 }
 

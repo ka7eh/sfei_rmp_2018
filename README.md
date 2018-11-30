@@ -1,44 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This tool was created for the SFEI San Francisco Bay Data Visualization Challenge, 2018. You can see the live version of the tool here: https://ka7eh.github.io/sfei_rmp_2018/
 
-In the project directory, you can run:
+## Mercury in water and in fish tissues
 
-### `npm start`
+This tool shows two data measurements in relation to one another:  Mercury content of water samples, and average organic mercury content found in the tissues of four common fish species in the San Francisco Bay area.   The data spans the years from 1994 to 2017.  
+Purple dots on the map of San Francisco represent individual water samples tested in a given year.  The darker the dot, the higher the mercury content of the sample.  You can click on any individual dot to view the exact measurement.
+The chart inset in the lower left shows the range of organic mercury levels found in each fish species during that year, represented on top of a gradient of safety thresholds for consuming those fish.  
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Navigating the tool
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+To look at the data for a single year, the year of interest can be selected using control buttons in the left side panel.  The “play” button will auto-play the annual data sequentially.
 
-### `npm test`
+## Interpretation and context
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The four thresholds represented behind the fish data are set by the U.S. FDA, and represent danger levels for pregnant mothers who might eat fish. Measurements in the lowest (yellow) range indicate that the fish are safe to eat up to three times a week.  The second range indicates that they are safe to eat up to two times per week.  Fish in the third range should not be eaten more than once per week, and anything in the high (red) range is unsafe to eat in any quantity.
+Humans are generally able to select alternative foods when certain options are unsafe.  In fact, local governments issue advisories when they determine that residents should avoid locally-caught fish.  Wildlife living on a fish diet in the San Francisco Bay area, however, do not have alternative food options.  If their primary food source contains unsafe mercury levels, it can negatively affect entire generations of offspring, weakening the local ecological fabric.
+In November 2007, the California State Water Resources Control Board and the U.S. EPA approved a mercury mitigation plan for the Bay Area watershed.  The following year the State began large-scale efforts to remove mercury from contaminated sites and to impose limits on the release of mercury from industrial and municipal wastewater systems.  Even with these initiatives, it will take at least 70 years before the Bay Area watershed returns to safe mercury levels.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
